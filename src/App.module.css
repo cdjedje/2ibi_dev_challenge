@@ -3,3 +3,13 @@
     padding-left: 70px;
     padding-right: 70px;
 }
+
+.imgPreview{
+    padding-top: 20px;
+    height: 100px;
+    width: 150px;
+}
+
+.detailCard{
+    padding: 16px;
+}
