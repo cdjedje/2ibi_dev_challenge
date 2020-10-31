@@ -11,8 +11,8 @@ export const CountyTable = ({ countries }) => {
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
-                        <TableCell align="right">Currency</TableCell>
-                        <TableCell align="right">Test</TableCell>
+                        <TableCell align="right">Capital</TableCell>
+                        <TableCell align="right">Region</TableCell>
                         <TableCell align="right"></TableCell>
                     </TableRow>
                 </TableHead>
@@ -20,9 +20,9 @@ export const CountyTable = ({ countries }) => {
                     {countries.map((country) => (
                         <TableRow key={country?.name}>
                             <TableCell component="th" scope="row">{country?.name}</TableCell>
-                            <TableCell align="right">{country?.calories}</TableCell>
-                            <TableCell align="right">{country?.fat}</TableCell>
-                            <TableCell align="right">{country?.fat}</TableCell>
+                            <TableCell align="right">{country?.capital}</TableCell>
+                            <TableCell align="right">{country?.region}</TableCell>
+                            <TableCell align="right"></TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
