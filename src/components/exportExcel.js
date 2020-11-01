@@ -4,8 +4,6 @@ import Excel from 'exceljs'
 import { saveAs } from 'file-saver'
 
 
-
-
 const headers = [
     { header: 'Name', key: 'name', width: 10 },
     { header: 'Capital', key: 'capital', width: 10 },

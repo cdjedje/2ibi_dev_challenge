@@ -87,8 +87,8 @@ export const CountyTable = ({ countries }) => {
                     <ListItemText primary="Details" />
                 </MenuItem>
                 <ExportExcel country={country} />
-                <ExportCSV />
-                <ExportXML />
+                <ExportCSV country={country} />
+                <ExportXML country={country} />
             </Menu>
         </div>
     )
