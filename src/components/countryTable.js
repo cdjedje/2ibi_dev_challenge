@@ -86,7 +86,7 @@ export const CountyTable = ({ countries }) => {
                 <MenuItem onClick={() => { history.push(`/country/${country.name}`); }}>
                     <ListItemText primary="Details" />
                 </MenuItem>
-                <ExportExcel />
+                <ExportExcel country={country} />
                 <ExportCSV />
                 <ExportXML />
             </Menu>
