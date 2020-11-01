@@ -1,59 +1,58 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, IconButton } from '@material-ui/core';
+import {
+    AddBox, ArrowDownward, Check, ChevronLeft, ChevronRight, Clear,
+    DeleteOutline, Edit, FilterList, FirstPage, LastPage, Remove, SaveAlt, Search, ViewColumn,
+    SettingsIcon
+} from '@material-ui/icons';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import MaterialTable from 'material-table';
+import { forwardRef } from 'react';
+
+
+const columns = [
+    { title: 'Name', field: 'name' },
+    { title: 'Capital', field: 'capital' },
+    { title: 'Region', field: 'region' },
+]
+
+
+const tableIcons = {
+    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
+    Execute: forwardRef((props, ref) => <PlayArrowIcon {...props} ref={ref} />),
+    DotsVertical: forwardRef((props, ref) => <MoreVertIcon {...props} ref={ref} />)
+};
 
 export const CountyTable = ({ countries }) => {
 
 
-    const [open, setOpen] = useState(false)
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const select = () => {
-        return (
-            <Select
-                open={open}
-                onClose={handleClose}
-                onOpen={handleOpen}
-            >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-            </Select>
-        )
-    }
-
     return (
-        <TableContainer component={Paper}>
-            <Table aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell align="right">Capital</TableCell>
-                        <TableCell align="right">Region</TableCell>
-                        <TableCell align="right"></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {countries.map((country) => (
-                        <TableRow key={country?.name}>
-                            <TableCell component="th" scope="row">{country?.name}</TableCell>
-                            <TableCell align="right">{country?.capital}</TableCell>
-                            <TableCell align="right">{country?.region}</TableCell>
-                            <TableCell align="right">
-                                <MoreVertIcon />
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <MaterialTable
+            title=""
+            icons={tableIcons}
+            columns={columns}
+            data={countries}
+            options={{
+                actionsColumnIndex: -1,
+            }}
+        />
     )
 }
