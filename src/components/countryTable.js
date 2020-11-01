@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Menu, MenuItem, ListItemText } from '@material-ui/core';
 import {
     AddBox, ArrowDownward, Check, ChevronLeft, ChevronRight, Clear,
-    DeleteOutline, Edit, FilterList, FirstPage, LastPage, Remove, SaveAlt, Search, ViewColumn,
-    SettingsIcon
+    DeleteOutline, Edit, FilterList, FirstPage, LastPage, Remove, SaveAlt, Search, ViewColumn
 } from '@material-ui/icons';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import MaterialTable from 'material-table';
 import { forwardRef } from 'react';
+import { ExportExcel, ExportCSV, ExportXML } from '../components'
 
 
 const columns = [
@@ -45,7 +45,7 @@ export const CountyTable = ({ countries }) => {
 
     const [open, setOpen] = useState(false)
     const [anchorEl, setAnchorEl] = useState(null)
-    const [countryName, setCountryName] = useState(null)
+    const [country, setCountry] = useState(null)
 
     const history = useHistory();
 
@@ -73,7 +73,7 @@ export const CountyTable = ({ countries }) => {
                     {
                         icon: tableIcons.DotsVertical,
                         tooltip: 'Acções',
-                        onClick: (event, rowData) => { handleDetails(event, rowData); setCountryName(rowData?.name) }
+                        onClick: (event, rowData) => { handleDetails(event, rowData); setCountry(rowData) }
                     }
                 ]}
             />
@@ -83,12 +83,12 @@ export const CountyTable = ({ countries }) => {
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}>
-                <MenuItem onClick={() => { history.push(`/country/${countryName}`); }}>
+                <MenuItem onClick={() => { history.push(`/country/${country.name}`); }}>
                     <ListItemText primary="Details" />
                 </MenuItem>
-                <MenuItem onClick={() => { }}>
-                    <ListItemText primary="Editar" />
-                </MenuItem>
+                <ExportExcel />
+                <ExportCSV />
+                <ExportXML />
             </Menu>
         </div>
     )
