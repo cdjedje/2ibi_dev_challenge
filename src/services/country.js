@@ -3,7 +3,7 @@ import { config } from '../utils/config'
 class Country {
 
     async getCountries() {
-        let response = await fetch(config.url + '/rest/v2/all?fields=name;region;capital', {
+        let response = await fetch(config.url + '/rest/v2/all?fields=name;region;capital;flag;subregion;area;population;timezones;nativeName', {
             method: 'GET'
         });
         try {
