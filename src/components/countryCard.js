@@ -32,21 +32,18 @@ export const CountyCard = ({ country }) => {
                         <h4>Sub Region</h4>
                         <p>{country?.subregion}</p>
 
-                        <h4>Capital</h4>
-                        <p>{country?.capital}</p>
+                        <h4>Population</h4>
+                        <p>{country?.population}</p>
 
-                        <h4>Region</h4>
-                        <p>{country?.region}</p>
+                        <h4>Area</h4>
+                        <p>{country?.area}</p>
                     </Grid>
                     <Grid item xs={3}>
-                        <h4>Sub Region</h4>
-                        <p>{country?.subregion}</p>
+                        <h4>Time Zone</h4>
+                        <p>{country?.timezones}</p>
 
-                        <h4>Capital</h4>
-                        <p>{country?.capital}</p>
-
-                        <h4>Region</h4>
-                        <p>{country?.region}</p>
+                        <h4>Native Name</h4>
+                        <p>{country?.nativeName}</p>
                     </Grid>
                 </Grid>
             </Paper>
