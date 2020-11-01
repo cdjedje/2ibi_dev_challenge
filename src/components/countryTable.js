@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Select, MenuItem, IconButton } from '@material-ui/core';
+import { Link, useHistory } from 'react-router-dom'
+import { Menu, MenuItem, ListItemText } from '@material-ui/core';
 import {
     AddBox, ArrowDownward, Check, ChevronLeft, ChevronRight, Clear,
     DeleteOutline, Edit, FilterList, FirstPage, LastPage, Remove, SaveAlt, Search, ViewColumn,
@@ -43,16 +43,53 @@ const tableIcons = {
 
 export const CountyTable = ({ countries }) => {
 
+    const [open, setOpen] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null)
+    const [countryName, setCountryName] = useState(null)
+
+    const history = useHistory();
+
+    const handleClose = () => {
+        setAnchorEl(null);
+        setOpen(false);
+    };
+
+
+    const handleDetails = (event, row) => {
+        setAnchorEl(event.currentTarget);
+    }
 
     return (
-        <MaterialTable
-            title=""
-            icons={tableIcons}
-            columns={columns}
-            data={countries}
-            options={{
-                actionsColumnIndex: -1,
-            }}
-        />
+        <div>
+            <MaterialTable
+                title=""
+                icons={tableIcons}
+                columns={columns}
+                data={countries}
+                options={{
+                    actionsColumnIndex: -1,
+                }}
+                actions={[
+                    {
+                        icon: tableIcons.DotsVertical,
+                        tooltip: 'Acções',
+                        onClick: (event, rowData) => { handleDetails(event, rowData); setCountryName(rowData?.name) }
+                    }
+                ]}
+            />
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}>
+                <MenuItem onClick={() => { history.push(`/country/${countryName}`); }}>
+                    <ListItemText primary="Details" />
+                </MenuItem>
+                <MenuItem onClick={() => { }}>
+                    <ListItemText primary="Editar" />
+                </MenuItem>
+            </Menu>
+        </div>
     )
 }
