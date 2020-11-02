@@ -15,7 +15,7 @@ import { ExportExcel, ExportCSV, ExportXML } from '../components'
 const columns = [
     { title: 'Name', field: 'name' },
     { title: 'Capital', field: 'capital' },
-    { title: 'Region', field: 'region' },
+    { title: 'Region', field: 'region' }
 ]
 
 

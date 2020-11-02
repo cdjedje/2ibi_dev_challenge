@@ -8,9 +8,13 @@ const headers = [
     { header: 'Name', key: 'name', width: 10 },
     { header: 'Capital', key: 'capital', width: 10 },
     { header: 'Region', key: 'region', width: 10 },
+    { header: 'Sub Region', key: 'subregion', width: 10 },
+    { header: 'Population', key: 'population', width: 10 },
+    { header: 'Area', key: 'area', width: 10 },
+    { header: 'Timezones', key: 'timezones', width: 10 },
+    { header: 'Native Name', key: 'nativeName', width: 10 },
+    { header: 'Flag', key: 'flag', width: 10 }
 ]
-
-
 
 export const ExportExcel = ({ country }) => {
 
