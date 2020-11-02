@@ -9,7 +9,7 @@ import classes from '../App.module.css'
 export const Details = () => {
 
     const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
+    const [error, setError] = useState({ status: false, type: "notFound" })
     const [country, setCountry] = useState(null)
     const { countryName } = useParams();
 
@@ -22,11 +22,12 @@ export const Details = () => {
                     setCountry(response[0])
                     setLoading(false)
                 } else {
-                    //TODO: handle errors
-                    setError(true)
+                    setError({ status: true, type: "notFound" })
                     setLoading(false)
                 }
-
+            }).catch((err) => {
+                setError({ status: true, type: "internalError" })
+                setLoading(false)
             })
 
     }, [])
@@ -37,18 +38,29 @@ export const Details = () => {
         )
     }
 
+    console.log({ error })
+
     return (
         <div>
             <NavBar />
-            {!error && (
+            {error.status == false && (
                 <div className={classes.container}>
                     <CountyCard country={country} />
                 </div>
             )}
-            {error && (
-                <div className={classes.wrapperNotFound}>
-                    <img className={classes.imgNotFound} src="/404.png" />
+            {error.status == true && (
+                <div>
+                    {error.type == "notFound" ? (
+                        <div className={classes.wrapperNotFound}>
+                            <img className={classes.imgNotFound} src="/404.png" />
+                        </div>
+                    ) : (
+                            <div>
+                                Error: failed to fetch data
+                            </div>
+                        )}
                 </div>
+
             )}
         </div>
     )

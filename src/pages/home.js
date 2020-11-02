@@ -8,14 +8,21 @@ import classes from '../App.module.css'
 export const Home = () => {
 
     const [countries, setCountries] = useState([])
-    const [loading, setLoafing] = useState(true)
+    const [error, setError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         Country.getCountries()
             .then(response => {
                 // console.log(response)
                 setCountries(response)
-                setLoafing(false)
+                setLoading(false)
+            }).catch((err) => {
+                console.log(err)
+                setErrorMessage("Error: Failed to fetch")
+                setError(true)
+                setLoading(false)
             })
     }, [])
 
@@ -29,9 +36,16 @@ export const Home = () => {
     return (
         <div>
             <NavBar />
-            <div className={classes.container}>
-                <CountyTable countries={countries} />
-            </div>
+            {!error && (
+                <div className={classes.container}>
+                    <CountyTable countries={countries} />
+                </div>
+            )}
+            {error && (
+                <div className={classes.container}>
+                    {errorMessage}
+                </div>
+            )}
         </div>
     )
 }

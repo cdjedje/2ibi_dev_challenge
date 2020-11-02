@@ -10,7 +10,7 @@ class Country {
             let data = await response.json()
             return data;
         } catch (e) {
-            throw "Error fetching data"
+            throw new Error()
         }
     }
 
@@ -22,7 +22,7 @@ class Country {
             let data = await response.json()
             return data;
         } catch (e) {
-            throw "Error fetching data"
+            throw new Error()
         }
     }
 }
