@@ -17,11 +17,14 @@ export const Details = () => {
 
         Country.getCountryByName(countryName)
             .then(response => {
+                console.log(response)
                 if (response?.length == 1) {
                     setCountry(response[0])
                     setLoading(false)
                 } else {
                     //TODO: handle errors
+                    setError(true)
+                    setLoading(false)
                 }
 
             })
@@ -37,9 +40,16 @@ export const Details = () => {
     return (
         <div>
             <NavBar />
-            <div className={classes.container}>
-                <CountyCard country={country} />
-            </div>
+            {!error && (
+                <div className={classes.container}>
+                    <CountyCard country={country} />
+                </div>
+            )}
+            {error && (
+                <div className={classes.wrapperNotFound}>
+                    <img className={classes.imgNotFound} src="/404.png" />
+                </div>
+            )}
         </div>
     )
 }

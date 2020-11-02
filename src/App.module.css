@@ -13,3 +13,12 @@
 .detailCard{
     padding: 16px;
 }
+
+.imgNotFound{
+    width: 500px;
+    height: 500px;
+}
+
+.wrapperNotFound{
+    text-align: center;
+}
