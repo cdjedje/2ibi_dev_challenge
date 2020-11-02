@@ -3,9 +3,7 @@ import { Paper, Grid, Button } from '@material-ui/core';
 import classes from '../App.module.css'
 
 export const CountyCard = ({ country }) => {
-
-    console.log({ country })
-
+    
     return (
         <div>
             <Paper className={classes.detailCard}>

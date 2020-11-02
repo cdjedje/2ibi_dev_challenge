@@ -15,11 +15,9 @@ export const Home = () => {
     useEffect(() => {
         Country.getCountries()
             .then(response => {
-                // console.log(response)
                 setCountries(response)
                 setLoading(false)
             }).catch((err) => {
-                console.log(err)
                 setErrorMessage("Error: Failed to fetch")
                 setError(true)
                 setLoading(false)

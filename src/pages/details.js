@@ -17,7 +17,6 @@ export const Details = () => {
 
         Country.getCountryByName(countryName)
             .then(response => {
-                console.log(response)
                 if (response?.length == 1) {
                     setCountry(response[0])
                     setLoading(false)
@@ -37,8 +36,6 @@ export const Details = () => {
             <CircularProgress />
         )
     }
-
-    console.log({ error })
 
     return (
         <div>
