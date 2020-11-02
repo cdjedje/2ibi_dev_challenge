@@ -38,8 +38,7 @@ export const ExportCSV = ({ country }) => {
 
     return (
         <MenuItem>
-            {/* <ListItemText primary="Export as CSV" /> */}
-            <CSVLink data={csvData} filename="pais.csv" asyncOnClick={true} onClick={(event, done) => onClick(event, done)}>
+            <CSVLink data={csvData} filename="pais.csv" asyncOnClick={true} onClick={(event, done) => onClick(event, done)} style={{ color: "black", textDecoration: "none" }}>
                 Export as CSV
             </CSVLink>
         </MenuItem>
