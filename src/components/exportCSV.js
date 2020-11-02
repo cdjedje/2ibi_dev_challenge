@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MenuItem, ListItemText } from '@material-ui/core';
 import { CSVLink, CSVDownload } from "react-csv";
 
@@ -10,24 +10,32 @@ const headers = [
 ]
 
 
+let csv = []
+
 export const ExportCSV = ({ country }) => {
 
-    let columns = []
-    let row = []
-    for (let header of headers) {
-        columns.push(header.header)
-        row.push(country[header.key])
-    }
 
-    let csv = [
-        columns,
-        row
-    ]
+    const [csvData, setCsvData] = useState([])
+
+    const onClick = (event, done) => {
+        let columns = []
+        let row = []
+        for (let header of headers) {
+            columns.push(header.header)
+            row.push(country[header.key])
+        }
+
+        csv = [
+            columns,
+            row
+        ]
+        setCsvData(csv)
+    }
 
     return (
         <MenuItem>
             {/* <ListItemText primary="Export as CSV" /> */}
-            <CSVLink data={csv} filename="pais.csv">
+            <CSVLink data={csvData} filename="pais.csv" asyncOnClick={true} onClick={(event, done) => onClick(event, done)}>
                 Export as CSV
             </CSVLink>
         </MenuItem>
