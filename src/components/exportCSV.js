@@ -30,6 +30,7 @@ export const ExportCSV = ({ country }) => {
             row
         ]
         setCsvData(csv)
+        done();
     }
 
     return (
